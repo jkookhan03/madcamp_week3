@@ -34,7 +34,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.madcamp_week3"
-        minSdk = flutter.minSdkVersion
+        minSdkVersion 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
+import 'naver_map_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final String login_method;
@@ -14,15 +15,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     Text(
       'Home Tab Content',
       style: TextStyle(fontSize: 24),
     ),
-    Text(
-      'Settings Tab Content',
-      style: TextStyle(fontSize: 24),
-    ),
+    NaverMapScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -61,8 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.map),
+            label: 'Map',
           ),
         ],
         currentIndex: _selectedIndex,

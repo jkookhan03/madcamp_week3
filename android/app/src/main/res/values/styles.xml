@@ -15,4 +15,8 @@
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
+    <string name="app_name">madcamp_week3</string>
+    <string name="client_id">YDxfxtnGIPvoLwddVHNC</string>
+    <string name="client_secret">XJGd5rsvcr</string>
+    <string name="client_name">mad_user</string>
 </resources>

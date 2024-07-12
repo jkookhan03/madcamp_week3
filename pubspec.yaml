@@ -30,6 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  kakao_flutter_sdk: ^1.9.3
+  flutter_naver_login: ^1.8.0
+  http: ^0.13.6
+  flutter_naver_map: ^1.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -52,6 +56,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  assets:
+    - assets/images/kakao.png
+    - assets/images/naver.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

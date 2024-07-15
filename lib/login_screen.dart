@@ -7,6 +7,7 @@ import 'pwd_screen.dart';
 import 'home_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatelessWidget {
   // 카카오톡 로그인 처리
@@ -44,12 +45,10 @@ class LoginPage extends StatelessWidget {
         }),
       );
 
-      // 200 => success, 300 => fail
-
-      // 여기서 사용자 등록 여부를 확인하는 로직을 추가
       bool isRegistered = (response.statusCode == 200);
 
       if (isRegistered) {
+        await _saveLoginInfo("KAKAO", user.id.toString());
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen(login_method: "KAKAO", token: user.id.toString())),
@@ -86,6 +85,7 @@ class LoginPage extends StatelessWidget {
         bool isRegistered = (response.statusCode == 200);
 
         if (isRegistered) {
+          await _saveLoginInfo("NAVER", result.account.id.toString());
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => HomeScreen(login_method: "NAVER", token: result.account.id.toString())),
@@ -102,6 +102,13 @@ class LoginPage extends StatelessWidget {
     } catch (error) {
       print('네이버 로그인 실패: $error');
     }
+  }
+
+  // 로그인 정보 저장
+  Future<void> _saveLoginInfo(String loginMethod, String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('login_method', loginMethod);
+    await prefs.setString('token', token);
   }
 
   @override

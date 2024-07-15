@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'home_screen.dart';
 
 class PwdScreen extends StatelessWidget {
@@ -38,6 +39,7 @@ class PwdScreen extends StatelessWidget {
     );
 
     if (response.statusCode == 200) {
+      await _saveLoginInfo(type!, id!);
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
@@ -56,6 +58,13 @@ class PwdScreen extends StatelessWidget {
         ),
       );
     }
+  }
+
+  // 로그인 정보 저장
+  Future<void> _saveLoginInfo(String loginMethod, String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('login_method', loginMethod);
+    await prefs.setString('token', token);
   }
 
   @override

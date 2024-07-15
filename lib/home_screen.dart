@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'naver_map_screen.dart';
 import 'quiz_screen.dart';  // 새로 추가된 import
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   final String login_method;
@@ -31,7 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _logout(BuildContext context) {
+  Future<void> _logout(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => LoginPage()),

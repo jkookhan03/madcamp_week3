@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
-import 'quiz_screen.dart';
 import 'user_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -40,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
         'Home Tab Content',
         style: TextStyle(fontSize: 24),
       ),
-      QuizScreen(),
       UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
     ];
   }
@@ -72,10 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
                   label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.question_answer),
-                  label: 'Quiz',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person),

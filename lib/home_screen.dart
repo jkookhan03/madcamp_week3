@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'user_screen.dart';
+import 'camera_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
         style: TextStyle(fontSize: 24),
       ),
       UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
+      CameraScreen(),
     ];
   }
 
@@ -74,6 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person),
                   label: 'User',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.camera),
+                  label: 'Camera',
                 ),
               ],
               currentIndex: _selectedIndex,

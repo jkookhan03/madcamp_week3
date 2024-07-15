@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
-import 'naver_map_screen.dart';
 import 'quiz_screen.dart';
 import 'user_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -41,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
         'Home Tab Content',
         style: TextStyle(fontSize: 24),
       ),
-      NaverMapScreen(),
       QuizScreen(),
       UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
     ];
@@ -51,16 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  Future<void> _logout(BuildContext context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => LoginPage()),
-          (Route<dynamic> route) => false,
-    );
   }
 
   @override
@@ -75,12 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
           return Scaffold(
             appBar: AppBar(
               title: Text('Home Screen with Tabs'),
-              actions: [
-                IconButton(
-                  icon: Icon(Icons.logout),
-                  onPressed: () => _logout(context),
-                ),
-              ],
             ),
             body: Center(
               child: _widgetOptions.elementAt(_selectedIndex),
@@ -90,10 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
                   label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.map),
-                  label: 'Map',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.question_answer),

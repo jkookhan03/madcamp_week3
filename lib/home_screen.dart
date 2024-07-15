@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'naver_map_screen.dart';
-import 'quiz_screen.dart';  // 새로 추가된 import
+import 'quiz_screen.dart';
+import 'user_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,15 +17,35 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  String profileImageUrl = '';
+  late Future<void> _loadProfileImageFuture;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home Tab Content',
-      style: TextStyle(fontSize: 24),
-    ),
-    NaverMapScreen(),
-    QuizScreen(),  // 퀴즈 탭 추가
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _loadProfileImageFuture = _loadProfileImage();
+  }
+
+  Future<void> _loadProfileImage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      profileImageUrl = prefs.getString('profile_image_url') ?? '';
+    });
+  }
+
+  late List<Widget> _widgetOptions = [];
+
+  void _initializeWidgetOptions() {
+    _widgetOptions = <Widget>[
+      Text(
+        'Home Tab Content',
+        style: TextStyle(fontSize: 24),
+      ),
+      NaverMapScreen(),
+      QuizScreen(),
+      UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
+    ];
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -44,38 +65,54 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Screen with Tabs'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () => _logout(context),
-          ),
-        ],
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Map',
-          ),
-          BottomNavigationBarItem(  // 퀴즈 탭 아이템 추가
-            icon: Icon(Icons.question_answer),
-            label: 'Quiz',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
-      ),
+    return FutureBuilder(
+      future: _loadProfileImageFuture,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.connectionState == ConnectionState.done) {
+          _initializeWidgetOptions();
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Home Screen with Tabs'),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.logout),
+                  onPressed: () => _logout(context),
+                ),
+              ],
+            ),
+            body: Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.map),
+                  label: 'Map',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.question_answer),
+                  label: 'Quiz',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person),
+                  label: 'User',
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              selectedItemColor: Colors.blue,
+              onTap: _onItemTapped,
+            ),
+          );
+        } else {
+          return Center(child: Text('Error loading profile image'));
+        }
+      },
     );
   }
 }

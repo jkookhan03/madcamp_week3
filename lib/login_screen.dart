@@ -32,6 +32,7 @@ class LoginPage extends StatelessWidget {
       }
       // 로그인 성공 후 사용자 정보 가져오기
       User user = await UserApi.instance.me();
+      String profileImageUrl = user.kakaoAccount?.profile?.profileImageUrl ?? '';
       print('사용자 정보: ${user.toString()}');
 
       final response = await http.post(
@@ -48,7 +49,7 @@ class LoginPage extends StatelessWidget {
       bool isRegistered = (response.statusCode == 200);
 
       if (isRegistered) {
-        await _saveLoginInfo("KAKAO", user.id.toString());
+        await _saveLoginInfo("KAKAO", user.id.toString(), profileImageUrl);
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomeScreen(login_method: "KAKAO", token: user.id.toString())),
@@ -71,6 +72,8 @@ class LoginPage extends StatelessWidget {
       if (result.status == NaverLoginStatus.loggedIn) {
         print('네이버로 로그인 성공: ${result.account}');
 
+        String profileImageUrl = result.account.profileImage ?? '';
+
         final response = await http.post(
           Uri.parse('http://172.10.7.88:80/checkUser'),
           headers: <String, String>{
@@ -85,7 +88,7 @@ class LoginPage extends StatelessWidget {
         bool isRegistered = (response.statusCode == 200);
 
         if (isRegistered) {
-          await _saveLoginInfo("NAVER", result.account.id.toString());
+          await _saveLoginInfo("NAVER", result.account.id.toString(), profileImageUrl);
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => HomeScreen(login_method: "NAVER", token: result.account.id.toString())),
@@ -105,10 +108,11 @@ class LoginPage extends StatelessWidget {
   }
 
   // 로그인 정보 저장
-  Future<void> _saveLoginInfo(String loginMethod, String token) async {
+  Future<void> _saveLoginInfo(String loginMethod, String token, String profileImageUrl) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('login_method', loginMethod);
     await prefs.setString('token', token);
+    await prefs.setString('profile_image_url', profileImageUrl);
   }
 
   @override

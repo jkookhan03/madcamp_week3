@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'naver_map_screen.dart';
+import 'quiz_screen.dart';  // 새로 추가된 import
 
 class HomeScreen extends StatefulWidget {
   final String login_method;
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
       style: TextStyle(fontSize: 24),
     ),
     NaverMapScreen(),
+    QuizScreen(),  // 퀴즈 탭 추가
   ];
 
   void _onItemTapped(int index) {
@@ -61,6 +63,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
             label: 'Map',
+          ),
+          BottomNavigationBarItem(  // 퀴즈 탭 아이템 추가
+            icon: Icon(Icons.question_answer),
+            label: 'Quiz',
           ),
         ],
         currentIndex: _selectedIndex,

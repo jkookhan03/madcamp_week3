@@ -19,13 +19,13 @@ class IDLoginScreen extends StatelessWidget {
     }
 
     final response = await http.post(
-      Uri.parse('http://172.10.7.88:80/checkUser'),
+      Uri.parse('http://172.10.7.88:80/checkUserNone'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{
-        'login_method': "NONE",
-        'token_id': _idController.text.toString()
+        'token_id': _idController.text.toString(),
+        'password': _passwordController.text.toString(),  // 비밀번호 추가
       }),
     );
 

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +13,7 @@ class _CameraScreenState extends State<CameraScreen> {
   CameraController? controller;
   late List<CameraDescription> cameras;
   late CameraDescription firstCamera;
+  bool _isPressed = false;
 
   @override
   void initState() {
@@ -34,14 +34,21 @@ class _CameraScreenState extends State<CameraScreen> {
 
     if (!mounted) return;
     setState(() {});
+  }
 
-    Timer.periodic(Duration(seconds: 5), (timer) async {
-      if (!mounted) return;
-      if (controller != null && controller!.value.isInitialized) {
-        final image = await controller!.takePicture();
-        await _sendImageToServer(image);
-      }
-    });
+  Future<void> _takePictureAndSend() async {
+    if (controller != null && controller!.value.isInitialized) {
+      setState(() {
+        _isPressed = true;
+      });
+
+      final image = await controller!.takePicture();
+      await _sendImageToServer(image);
+
+      setState(() {
+        _isPressed = false;
+      });
+    }
   }
 
   Future<void> _sendImageToServer(XFile image) async {
@@ -83,7 +90,42 @@ class _CameraScreenState extends State<CameraScreen> {
           Positioned.fill(
             child: CameraPreview(controller!),
           ),
-          // 추가적으로 다른 위젯을 겹치게 넣을 수 있습니다.
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: GestureDetector(
+                onTap: _takePictureAndSend,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 100),
+                  width: 70,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 4,
+                    ),
+                  ),
+                  child: Center(
+                    child: AnimatedContainer(
+                      duration: Duration(milliseconds: 100),
+                      width: _isPressed ? 58 : 62,
+                      height: _isPressed ? 58 : 62,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

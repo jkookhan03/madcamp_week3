@@ -67,7 +67,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFFC3EAAB),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -79,7 +79,7 @@ class RegisterScreen extends StatelessWidget {
           },
         ),
       ),
-      backgroundColor: Colors.black, // 배경색을 검정으로 설정
+      backgroundColor: Color(0xFFC3EAAB),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -90,10 +90,10 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _nameController,
-                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 입력 텍스트 색상을 흰색으로 설정
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black), // 입력 텍스트 색상을 흰색으로 설정
                   decoration: InputDecoration(
                     labelText: '이름',
-                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 레이블 텍스트 색상
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black), // 레이블 텍스트 색상
                     border: UnderlineInputBorder(), // 밑줄 스타일 테두리
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey), // 기본 밑줄 색상
@@ -117,10 +117,10 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _idController,
-                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 입력 텍스트 색상을 흰색으로 설정
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black), // 입력 텍스트 색상을 흰색으로 설정
                   decoration: InputDecoration(
                     labelText: '아이디',
-                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 레이블 텍스트 색상
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black), // 레이블 텍스트 색상
                     border: UnderlineInputBorder(), // 밑줄 스타일 테두리
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey), // 기본 밑줄 색상
@@ -144,10 +144,10 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _passwordController,
-                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 입력 텍스트 색상을 흰색으로 설정
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black), // 입력 텍스트 색상을 흰색으로 설정
                   decoration: InputDecoration(
                     labelText: '비밀번호',
-                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 레이블 텍스트 색상
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black), // 레이블 텍스트 색상
                     border: UnderlineInputBorder(), // 밑줄 스타일 테두리
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey), // 기본 밑줄 색상

@@ -71,9 +71,9 @@ class PwdScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFFC3EAAB),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFFC3EAAB),
       body: SingleChildScrollView( // SingleChildScrollView를 추가하여 화면이 스크롤 가능하도록 함
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -86,7 +86,7 @@ class PwdScreen extends StatelessWidget {
                 fontFamily: 'Jua-Regular',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             Text(
@@ -95,7 +95,7 @@ class PwdScreen extends StatelessWidget {
                 fontFamily: 'Jua-Regular',
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             SizedBox(height: 30),
@@ -104,10 +104,10 @@ class PwdScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _nameController,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.black),
                   decoration: InputDecoration(
                     labelText: '이름',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(color: Colors.black),
                     border: UnderlineInputBorder(),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
@@ -131,10 +131,10 @@ class PwdScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _idController,
-                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black),
                   decoration: InputDecoration(
                     labelText: '아이디',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(color: Colors.black),
                     border: UnderlineInputBorder(),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
@@ -158,10 +158,10 @@ class PwdScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _passwordController,
-                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black),
                   decoration: InputDecoration(
                     labelText: '비밀번호',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(color: Colors.black),
                     border: UnderlineInputBorder(),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),

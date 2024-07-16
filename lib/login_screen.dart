@@ -118,7 +118,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFFC3EAAB),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -154,7 +154,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('또는', style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white)),
+                  child: Text('또는', style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black)),
                 ),
                 Container(
                   width: 150,
@@ -202,7 +202,7 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Jua-Regular',
                   fontSize: 15,
-                  color: Colors.white,
+                  color: Colors.black,
                   decoration: TextDecoration.underline,
                 ),
               ),

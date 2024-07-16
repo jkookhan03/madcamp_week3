@@ -61,7 +61,7 @@ class IDLoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFFC3EAAB),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -73,7 +73,7 @@ class IDLoginScreen extends StatelessWidget {
           },
         ),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFFC3EAAB),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -84,10 +84,10 @@ class IDLoginScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _idController,
-                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black),
                   decoration: InputDecoration(
                     labelText: '아이디',
-                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black),
                     border: UnderlineInputBorder(),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
@@ -111,10 +111,10 @@ class IDLoginScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _passwordController,
-                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black),
                   decoration: InputDecoration(
                     labelText: '비밀번호',
-                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.black),
                     border: UnderlineInputBorder(),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),

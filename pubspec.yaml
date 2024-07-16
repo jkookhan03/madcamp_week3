@@ -34,6 +34,8 @@ dependencies:
   flutter_naver_login: ^1.8.0
   http: ^0.13.6
   camera: ^0.10.0+1
+  fl_chart: ^0.35.0
+
 
 
   # The following adds the Cupertino Icons font to your application.

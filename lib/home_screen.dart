@@ -3,6 +3,7 @@ import 'login_screen.dart';
 import 'user_screen.dart';
 import 'camera_screen.dart';
 import 'exchange_screen.dart';
+import 'chart_screen.dart';  // chart_screen.dart를 import
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
       CameraScreen(),
       ExchangeScreen(token: widget.token),
+      TimeSeriesChart(),  // 새로운 차트 위젯 추가
     ];
   }
 
@@ -86,6 +88,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_cart),
                   label: 'Exchange',
+                ),
+                BottomNavigationBarItem(  // 새로운 탭 추가
+                  icon: Icon(Icons.show_chart),
+                  label: 'Chart',
                 ),
               ],
               currentIndex: _selectedIndex,

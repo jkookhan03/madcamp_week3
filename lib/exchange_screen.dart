@@ -44,7 +44,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
       });
     } else {
       // Handle error
-      print('Failed to load purchased items');
+      print('구매한 상품을 불러오지 못했습니다.');
       setState(() {
         isLoading = false;
       });
@@ -69,7 +69,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
       });
     } else {
       // Handle error
-      print('Failed to load user coins');
+      print('코인 정보를 불러오지 못했습니다.');
     }
   }
 
@@ -78,14 +78,14 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Purchase Failed'),
-          content: Text('You do not have enough coins to purchase this item.'),
+          title: Text('구매 불가', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
+          content: Text('코인이 부족합니다', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text('확인', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
             ),
           ],
         ),
@@ -111,18 +111,18 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
       _fetchUserCoins();
     } else {
       // Handle error
-      print('Failed to purchase item');
+      print('구매 불가');
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text('Purchase Failed'),
-          content: Text('Failed to purchase item. Please try again.'),
+          title: Text('구매 불가', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
+          content: Text('코인이 부족합니다', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('OK'),
+              child: Text('확인', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
             ),
           ],
         ),
@@ -134,7 +134,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Exchange Items'),
+        title: Text('기프티콘', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
         actions: [
           if (!showPurchaseOptions)
             IconButton(
@@ -156,7 +156,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Text(
               'Current Coins: $currentCoins',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 20, fontWeight: FontWeight.bold)
             ),
           ),
           Expanded(child: _buildPurchaseOptions()),
@@ -168,12 +168,12 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
 
   Widget _buildPurchasedItems() {
     return purchasedItems.isEmpty
-        ? Center(child: Text('No items purchased yet.'))
+        ? Center(child: Text('보유한 상품이 없습니다.', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)))
         : ListView.builder(
       itemCount: purchasedItems.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Text(purchasedItems[index]),
+          title: Text(purchasedItems[index], style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
         );
       },
     );
@@ -184,29 +184,29 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
       children: [
         ListTile(
           leading: Image.asset('assets/images/banana_milk.jpg'),
-          title: Text('Banana Milk'),
-          subtitle: Text('Cost: 10 Coins'),
+          title: Text('바나나 우유', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
+          subtitle: Text('Cost: 10 Coins', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           trailing: ElevatedButton(
-            onPressed: () => _purchaseItem('Banana Milk', 10),
-            child: Text('Purchase'),
+            onPressed: () => _purchaseItem('바나나 우유', 10),
+            child: Text('구매하기', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           ),
         ),
         ListTile(
           leading: Image.asset('assets/images/pepero.jpg'),
-          title: Text('Pepero'),
-          subtitle: Text('Cost: 5 Coins'),
+          title: Text('빼빼로', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
+          subtitle: Text('Cost: 5 Coins', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           trailing: ElevatedButton(
-            onPressed: () => _purchaseItem('Pepero', 5),
-            child: Text('Purchase'),
+            onPressed: () => _purchaseItem('빼빼로', 5),
+            child: Text('구매하기', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           ),
         ),
         ListTile(
           leading: Image.asset('assets/images/cultureland_10000.jpg'),
-          title: Text('Cultureland Gift Card 10000₩'),
-          subtitle: Text('Cost: 50 Coins'),
+          title: Text('문화상품권 10000₩', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
+          subtitle: Text('Cost: 50 Coins', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           trailing: ElevatedButton(
-            onPressed: () => _purchaseItem('Cultureland Gift Card 10000₩', 50),
-            child: Text('Purchase'),
+            onPressed: () => _purchaseItem('문화상품권 10000₩', 50),
+            child: Text('구매하기', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           ),
         ),
         ElevatedButton(
@@ -215,7 +215,7 @@ class _ExchangeScreenState extends State<ExchangeScreen> {
               showPurchaseOptions = false;
             });
           },
-          child: Text('Back to Purchased Items'),
+          child: Text('Back to Purchased Items', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
         ),
       ],
     );

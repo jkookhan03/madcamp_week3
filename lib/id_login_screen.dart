@@ -12,7 +12,7 @@ class IDLoginScreen extends StatelessWidget {
     if (_idController.text.isEmpty || _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('모든 정보를 입력해주세요'),
+          content: Text('모든 정보를 입력해주세요', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           duration: Duration(seconds: 1),
         ),
       );
@@ -43,7 +43,7 @@ class IDLoginScreen extends StatelessWidget {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('로그인 오류가 발생했습니다.'),
+          content: Text('로그인 오류가 발생했습니다.', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           duration: Duration(seconds: 1),
         ),
       );
@@ -84,10 +84,10 @@ class IDLoginScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _idController,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
                   decoration: InputDecoration(
                     labelText: '아이디',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
                     border: UnderlineInputBorder(),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
@@ -101,7 +101,7 @@ class IDLoginScreen extends StatelessWidget {
                 SizedBox(height: 8),
                 Text(
                   '  아이디를 입력하세요',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.grey),
                 ),
               ],
             ),
@@ -111,10 +111,10 @@ class IDLoginScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _passwordController,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
                   decoration: InputDecoration(
                     labelText: '비밀번호',
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
                     border: UnderlineInputBorder(),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
@@ -129,7 +129,7 @@ class IDLoginScreen extends StatelessWidget {
                 SizedBox(height: 8),
                 Text(
                   '   비밀번호를 입력하세요',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.grey),
                 ),
               ],
             ),
@@ -147,6 +147,7 @@ class IDLoginScreen extends StatelessWidget {
                 child: Text(
                   '로그인',
                   style: TextStyle(
+                    fontFamily: 'Jua-Regular',
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.w500,

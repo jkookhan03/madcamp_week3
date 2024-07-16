@@ -13,7 +13,7 @@ class RegisterScreen extends StatelessWidget {
     if (_nameController.text.isEmpty || _idController.text.isEmpty || _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('모든 정보를 입력해주세요'),
+          content: Text('모든 정보를 입력해주세요', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           duration: Duration(seconds: 1),
         ),
       );
@@ -49,7 +49,7 @@ class RegisterScreen extends StatelessWidget {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('회원 가입에 실패했습니다. 다시 시도해주세요.'),
+          content: Text('회원 가입에 실패했습니다. 다시 시도해주세요.', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           duration: Duration(seconds: 1),
         ),
       );
@@ -90,10 +90,10 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _nameController,
-                  style: TextStyle(color: Colors.white), // 입력 텍스트 색상을 흰색으로 설정
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 입력 텍스트 색상을 흰색으로 설정
                   decoration: InputDecoration(
                     labelText: '이름',
-                    labelStyle: TextStyle(color: Colors.white), // 레이블 텍스트 색상
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 레이블 텍스트 색상
                     border: UnderlineInputBorder(), // 밑줄 스타일 테두리
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey), // 기본 밑줄 색상
@@ -107,7 +107,7 @@ class RegisterScreen extends StatelessWidget {
                 SizedBox(height: 8), // TextField와 문구 사이의 간격
                 Text(
                   '  이름을 입력하세요',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.grey),
                 ),
               ],
             ),
@@ -117,10 +117,10 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _idController,
-                  style: TextStyle(color: Colors.white), // 입력 텍스트 색상을 흰색으로 설정
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 입력 텍스트 색상을 흰색으로 설정
                   decoration: InputDecoration(
                     labelText: '아이디',
-                    labelStyle: TextStyle(color: Colors.white), // 레이블 텍스트 색상
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 레이블 텍스트 색상
                     border: UnderlineInputBorder(), // 밑줄 스타일 테두리
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey), // 기본 밑줄 색상
@@ -134,7 +134,7 @@ class RegisterScreen extends StatelessWidget {
                 SizedBox(height: 8), // TextField와 문구 사이의 간격
                 Text(
                   '  아이디를 입력하세요',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.grey),
                 ),
               ],
             ),
@@ -144,10 +144,10 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _passwordController,
-                  style: TextStyle(color: Colors.white), // 입력 텍스트 색상을 흰색으로 설정
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 입력 텍스트 색상을 흰색으로 설정
                   decoration: InputDecoration(
                     labelText: '비밀번호',
-                    labelStyle: TextStyle(color: Colors.white), // 레이블 텍스트 색상
+                    labelStyle: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white), // 레이블 텍스트 색상
                     border: UnderlineInputBorder(), // 밑줄 스타일 테두리
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey), // 기본 밑줄 색상
@@ -162,7 +162,7 @@ class RegisterScreen extends StatelessWidget {
                 SizedBox(height: 8), // TextField와 문구 사이의 간격
                 Text(
                   '   비밀번호를 입력하세요',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.grey),
                 ),
               ],
             ),
@@ -180,6 +180,7 @@ class RegisterScreen extends StatelessWidget {
                 child: Text(
                   '회원가입 완료하기',
                   style: TextStyle(
+                    fontFamily: 'Jua-Regular',
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.w500,

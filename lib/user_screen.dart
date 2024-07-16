@@ -146,8 +146,8 @@ class _UserScreenState extends State<UserScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(isCorrect ? '정답입니다!' : '오답입니다!'),
-        content: Text(isCorrect ? '코인 5개를 획득했습니다.' : '다음 기회에 도전하세요.'),
+        title: Text(isCorrect ? '정답입니다!' : '오답입니다!', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
+        content: Text(isCorrect ? '코인 5개를 획득했습니다.' : '다음 기회에 도전하세요.', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
         actions: [
           TextButton(
             onPressed: () {
@@ -157,7 +157,7 @@ class _UserScreenState extends State<UserScreen> {
                 isQuizAnswered = false;
               });
             },
-            child: Text('확인'),
+            child: Text('확인', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           ),
         ],
       ),
@@ -185,7 +185,7 @@ class _UserScreenState extends State<UserScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Info'),
+        title: Text('User Info', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
@@ -206,24 +206,24 @@ class _UserScreenState extends State<UserScreen> {
             SizedBox(height: 20),
             Text(
               'Username: $userName',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 20),
             ),
             SizedBox(height: 10),
             Text(
               'Coins: $coins',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 20),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: isQuizLoading || !canTakeQuiz ? null : _fetchQuiz,
-              child: Text('일일 퀴즈 풀기'),
+              child: Text('일일 퀴즈 풀기', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
             ),
             if (!canTakeQuiz)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   '오늘의 퀴즈는 이미 풀었습니다.',
-                  style: TextStyle(color: Colors.red),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.red),
                 ),
               ),
             if (isQuizLoading) CircularProgressIndicator(),
@@ -232,16 +232,16 @@ class _UserScreenState extends State<UserScreen> {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   quiz!['question'],
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 18),
                 ),
               ),
               ElevatedButton(
                 onPressed: () => _submitAnswer(quiz!['option1']),
-                child: Text(quiz!['option1']),
+                child: Text(quiz!['option1'], style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
               ),
               ElevatedButton(
                 onPressed: () => _submitAnswer(quiz!['option2']),
-                child: Text(quiz!['option2']),
+                child: Text(quiz!['option2'], style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
               ),
             ],
           ],

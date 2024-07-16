@@ -17,7 +17,7 @@ class PwdScreen extends StatelessWidget {
     if (_nameController.text.isEmpty || _idController.text.isEmpty || _passwordController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('모든 정보를 입력해주세요'),
+          content: Text('모든 정보를 입력해주세요', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           duration: Duration(seconds: 1),
         ),
       );
@@ -53,7 +53,7 @@ class PwdScreen extends StatelessWidget {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('회원 등록에 실패했습니다. 다시 시도해주세요.'),
+          content: Text('회원 등록에 실패했습니다. 다시 시도해주세요.', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           duration: Duration(seconds: 1),
         ),
       );
@@ -83,6 +83,7 @@ class PwdScreen extends StatelessWidget {
             Text(
               '회원 등록을 위해',
               style: TextStyle(
+                fontFamily: 'Jua-Regular',
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -91,6 +92,7 @@ class PwdScreen extends StatelessWidget {
             Text(
               '필요한 정보를 입력해주세요!',
               style: TextStyle(
+                fontFamily: 'Jua-Regular',
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
@@ -119,7 +121,7 @@ class PwdScreen extends StatelessWidget {
                 SizedBox(height: 8),
                 Text(
                   '  이름을 입력하세요',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.grey),
                 ),
               ],
             ),
@@ -129,7 +131,7 @@ class PwdScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _idController,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
                   decoration: InputDecoration(
                     labelText: '아이디',
                     labelStyle: TextStyle(color: Colors.white),
@@ -146,7 +148,7 @@ class PwdScreen extends StatelessWidget {
                 SizedBox(height: 8),
                 Text(
                   '  아이디를 입력하세요',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.grey),
                 ),
               ],
             ),
@@ -156,7 +158,7 @@ class PwdScreen extends StatelessWidget {
               children: [
                 TextField(
                   controller: _passwordController,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white),
                   decoration: InputDecoration(
                     labelText: '비밀번호',
                     labelStyle: TextStyle(color: Colors.white),
@@ -174,7 +176,7 @@ class PwdScreen extends StatelessWidget {
                 SizedBox(height: 8),
                 Text(
                   '  비밀번호를 입력하세요',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.grey),
                 ),
               ],
             ),
@@ -192,6 +194,7 @@ class PwdScreen extends StatelessWidget {
                 child: Text(
                   '입력 완료',
                   style: TextStyle(
+                    fontFamily: 'Jua-Regular',
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.w500,

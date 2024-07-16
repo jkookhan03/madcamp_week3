@@ -154,7 +154,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text('또는', style: TextStyle(color: Colors.white)),
+                  child: Text('또는', style: TextStyle(fontFamily: 'Jua-Regular', color: Colors.white)),
                 ),
                 Container(
                   width: 150,
@@ -181,6 +181,7 @@ class LoginPage extends StatelessWidget {
                 child: Text(
                   '아이디로 로그인',
                   style: TextStyle(
+                    fontFamily: 'Jua-Regular',
                     color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
@@ -199,6 +200,7 @@ class LoginPage extends StatelessWidget {
               child: Text(
                 '회원가입 하러가기 >',
                 style: TextStyle(
+                  fontFamily: 'Jua-Regular',
                   fontSize: 15,
                   color: Colors.white,
                   decoration: TextDecoration.underline,

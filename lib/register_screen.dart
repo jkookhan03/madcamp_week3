@@ -67,7 +67,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFC3EAAB),
+        backgroundColor: Color(0xFF50C878),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
@@ -79,7 +79,7 @@ class RegisterScreen extends StatelessWidget {
           },
         ),
       ),
-      backgroundColor: Color(0xFFC3EAAB),
+      backgroundColor: Color(0xFF50C878),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

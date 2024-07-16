@@ -22,6 +22,13 @@ if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
 
+def apikeysPropertiesFile = rootProject.file("apikeys.properties")
+def apikeysProperties = new Properties()
+
+if (apikeysPropertiesFile.exists()) {
+    apikeysProperties.load(new FileInputStream(apikeysPropertiesFile))
+}
+
 android {
     namespace = "com.example.madcamp_week3"
     compileSdk = flutter.compileSdkVersion
@@ -38,6 +45,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
+        resValue "string", "google_maps_key", "\"${apikeysProperties['MAPS_API_KEY']}\""
         manifestPlaceholders = [
                 applicationName: "android.app.Application",
                 KAKAO_APP_KEY: "f2fd917ca6e936f32fc70d1d027de42c"

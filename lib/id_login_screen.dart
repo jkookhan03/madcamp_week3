@@ -73,7 +73,7 @@ class IDLoginScreen extends StatelessWidget {
           },
         ),
       ),
-      backgroundColor: Color(0xFFC3EAAB),
+      backgroundColor: Color(0xFF50C878),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

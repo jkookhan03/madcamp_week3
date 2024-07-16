@@ -35,7 +35,7 @@ class _CameraScreenState extends State<CameraScreen> {
     if (!mounted) return;
     setState(() {});
 
-    Timer.periodic(Duration(seconds: 1), (timer) async {
+    Timer.periodic(Duration(seconds: 5), (timer) async {
       if (!mounted) return;
       if (controller != null && controller!.value.isInitialized) {
         final image = await controller!.takePicture();
@@ -45,7 +45,7 @@ class _CameraScreenState extends State<CameraScreen> {
   }
 
   Future<void> _sendImageToServer(XFile image) async {
-    final uri = Uri.parse('http://172.10.7.88:80/uploadPhoto');
+    final uri = Uri.parse('http://172.10.5.120:80/uploadPhoto');
     final request = http.MultipartRequest('POST', uri)
       ..files.add(await http.MultipartFile.fromPath(
         'photo',
@@ -78,7 +78,14 @@ class _CameraScreenState extends State<CameraScreen> {
       appBar: AppBar(
         title: Text('Camera Stream'),
       ),
-      body: CameraPreview(controller!),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: CameraPreview(controller!),
+          ),
+          // 추가적으로 다른 위젯을 겹치게 넣을 수 있습니다.
+        ],
+      ),
     );
   }
 }

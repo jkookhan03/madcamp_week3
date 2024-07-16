@@ -71,9 +71,9 @@ class PwdScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFC3EAAB),
+        backgroundColor: Color(0xFF50C878),
       ),
-      backgroundColor: Color(0xFFC3EAAB),
+      backgroundColor: Color(0xFF50C878),
       body: SingleChildScrollView( // SingleChildScrollView를 추가하여 화면이 스크롤 가능하도록 함
         padding: const EdgeInsets.all(16.0),
         child: Column(

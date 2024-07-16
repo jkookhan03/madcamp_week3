@@ -4,6 +4,7 @@ import 'user_screen.dart';
 import 'camera_screen.dart';
 import 'exchange_screen.dart';
 import 'chart_screen.dart';  // chart_screen.dart를 import
+import 'google_map_screen.dart';  // google_map_screen.dart를 import
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -45,7 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
       UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
       CameraScreen(),
       ExchangeScreen(token: widget.token),
-      TimeSeriesChart(),  // 새로운 차트 위젯 추가
+      TimeSeriesChart(),  // 차트 위젯 추가
+      GoogleMapScreen(),  // 구글 맵 위젯 추가
     ];
   }
 
@@ -89,13 +91,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icon(Icons.shopping_cart),
                   label: 'Exchange',
                 ),
-                BottomNavigationBarItem(  // 새로운 탭 추가
+                BottomNavigationBarItem(
                   icon: Icon(Icons.show_chart),
                   label: 'Chart',
                 ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.map),
+                  label: 'Map',  // 구글 맵 탭 추가
+                ),
               ],
               currentIndex: _selectedIndex,
-              selectedItemColor: Colors.blue,
+              selectedItemColor: Color(0xFF50C878),
+              unselectedItemColor: Colors.grey,  // 기본값으로 회색으로 설정
               onTap: _onItemTapped,
             ),
           );

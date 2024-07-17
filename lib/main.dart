@@ -8,7 +8,7 @@ import 'home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  KakaoSdk.init(nativeAppKey: 'f2fd917ca6e936f32fc70d1d027de42c');
+  KakaoSdk.init(nativeAppKey: 'e6f2b28d149730b2e8c55ba532d18474');
   runApp(MyApp());
 }
 

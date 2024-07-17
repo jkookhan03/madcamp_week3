@@ -102,7 +102,8 @@ class _TimeSeriesChartState extends State<TimeSeriesChart> {
 
         setState(() {
           _spots = tempSpots;
-          yAxisMax = (maxAmount * 1.5).ceilToDouble(); // Y축 최대값 설정
+          // yAxisMax = (maxAmount * 1.5).ceilToDouble(); // Y축 최대값 설정
+          yAxisMax = 10.ceilToDouble(); // Y축 최대값 설정
           yAxisInterval = (yAxisMax / 5).ceilToDouble(); // Y축 간격 설정
           _isLoading = false;
           _hasError = false;

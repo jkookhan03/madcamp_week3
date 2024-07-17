@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'login_screen.dart';
 import 'user_screen.dart';
 import 'camera_screen.dart';
 import 'exchange_screen.dart';
 import 'chart_screen.dart';  // chart_screen.dart를 import
 import 'google_map_screen.dart';  // google_map_screen.dart를 import
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   final String login_method;
@@ -20,15 +20,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   String profileImageUrl = '';
-  late Future<void> _loadProfileImageFuture;
+  late Future<void> _loadProfileDataFuture;
 
   @override
   void initState() {
     super.initState();
-    _loadProfileImageFuture = _loadProfileImage();
+    _loadProfileDataFuture = _loadProfileData();
   }
 
-  Future<void> _loadProfileImage() async {
+  Future<void> _loadProfileData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       profileImageUrl = prefs.getString('profile_image_url') ?? '';
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
       CameraScreen(),
       ExchangeScreen(token: widget.token),
-      TimeSeriesChart(),  // 차트 위젯 추가
+      TimeSeriesChart(token: widget.token),  // 차트 위젯에 token 전달
       GoogleMapScreen(),  // 구글 맵 위젯 추가
     ];
   }
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _loadProfileImageFuture,
+      future: _loadProfileDataFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         } else {
-          return Center(child: Text('Error loading profile image'));
+          return Center(child: Text('Error loading profile data'));
         }
       },
     );

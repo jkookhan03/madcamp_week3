@@ -39,15 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _initializeWidgetOptions() {
     _widgetOptions = <Widget>[
-      Text(
-        'Home Tab Content',
-        style: TextStyle(fontSize: 24),
-      ),
-      UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
-      CameraScreen(token: widget.token),  // token 전달
-      ExchangeScreen(token: widget.token),
-      TimeSeriesChart(token: widget.token),  // 차트 위젯에 token 전달
       GoogleMapScreen(),  // 구글 맵 위젯 추가
+      CameraScreen(token: widget.token),  // token 전달
+      UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
+      TimeSeriesChart(token: widget.token),  // 차트 위젯에 token 전달
+      ExchangeScreen(token: widget.token), // 기프티콘(ExchangeScreen) 위젯 추가
     ];
   }
 
@@ -68,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
           _initializeWidgetOptions();
           return Scaffold(
             appBar: AppBar(
-              title: Text('Home Screen with Tabs'),
+              title: Text('CashTrash', style: TextStyle(fontFamily: 'Jua-Regular',)),
             ),
             body: Center(
               child: _widgetOptions.elementAt(_selectedIndex),
@@ -76,28 +72,24 @@ class _HomeScreenState extends State<HomeScreen> {
             bottomNavigationBar: BottomNavigationBar(
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'User',
+                  icon: Icon(Icons.map),
+                  label: 'Map',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.camera),
                   label: 'Camera',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart),
-                  label: 'Exchange',
+                  icon: Icon(Icons.person),
+                  label: 'User',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.show_chart),
                   label: 'Chart',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.map),
-                  label: 'Map',  // 구글 맵 탭 추가
+                  icon: Icon(Icons.shopping_cart),
+                  label: 'Exchange',
                 ),
               ],
               currentIndex: _selectedIndex,
@@ -107,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           );
         } else {
-          return Center(child: Text('Error loading profile data'));
+          return Center(child: Text('Error loading profile data', style: TextStyle(fontFamily: 'Jua-Regular',)));
         }
       },
     );

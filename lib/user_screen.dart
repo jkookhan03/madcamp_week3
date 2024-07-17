@@ -44,17 +44,21 @@ class _UserScreenState extends State<UserScreen> {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      setState(() {
-        userName = data['userName'];
-        coins = data['coin'];
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          userName = data['userName'];
+          coins = data['coin'];
+          isLoading = false;
+        });
+      }
     } else {
       // Handle error
       print('Failed to load user info');
-      setState(() {
-        isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
     }
   }
 
@@ -65,9 +69,11 @@ class _UserScreenState extends State<UserScreen> {
       DateTime lastDate = DateTime.parse(lastQuizDate);
       DateTime today = DateTime.now();
       if (today.year == lastDate.year && today.month == lastDate.month && today.day == lastDate.day) {
-        setState(() {
-          canTakeQuiz = false;
-        });
+        if (mounted) {
+          setState(() {
+            canTakeQuiz = false;
+          });
+        }
       }
     }
   }
@@ -76,17 +82,21 @@ class _UserScreenState extends State<UserScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     DateTime today = DateTime.now();
     prefs.setString('lastQuizDate', today.toIso8601String());
-    setState(() {
-      canTakeQuiz = false;
-    });
+    if (mounted) {
+      setState(() {
+        canTakeQuiz = false;
+      });
+    }
   }
 
   Future<void> _fetchQuiz() async {
     if (!canTakeQuiz) return;
 
-    setState(() {
-      isQuizLoading = true;
-    });
+    if (mounted) {
+      setState(() {
+        isQuizLoading = true;
+      });
+    }
 
     final response = await http.get(
       Uri.parse('http://172.10.7.88:80/getQuiz'),
@@ -97,32 +107,40 @@ class _UserScreenState extends State<UserScreen> {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      setState(() {
-        quiz = data;
-        isQuizLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          quiz = data;
+          isQuizLoading = false;
+        });
+      }
     } else {
       // Handle error
       print('Failed to load quiz');
-      setState(() {
-        isQuizLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          isQuizLoading = false;
+        });
+      }
     }
   }
 
   Future<void> _submitAnswer(String answer) async {
     if (quiz == null || isQuizAnswered) return;
 
-    setState(() {
-      isQuizAnswered = true;
-    });
+    if (mounted) {
+      setState(() {
+        isQuizAnswered = true;
+      });
+    }
 
     final isCorrect = answer == quiz!['answer'];
 
     if (isCorrect) {
-      setState(() {
-        coins += 5;
-      });
+      if (mounted) {
+        setState(() {
+          coins += 5;
+        });
+      }
 
       final response = await http.post(
         Uri.parse('http://172.10.7.88:80/updateUserCoins'),
@@ -152,10 +170,12 @@ class _UserScreenState extends State<UserScreen> {
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              setState(() {
-                quiz = null;
-                isQuizAnswered = false;
-              });
+              if (mounted) {
+                setState(() {
+                  quiz = null;
+                  isQuizAnswered = false;
+                });
+              }
             },
             child: Text('확인', style: TextStyle(fontFamily: 'Jua-Regular', fontSize: 16,)),
           ),

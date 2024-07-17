@@ -123,7 +123,7 @@ class _TimeSeriesChartState extends State<TimeSeriesChart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Time Series Chart'),
+        title: Text('내가 버린 쓰레기는?' , style: TextStyle(fontFamily: 'Jua-Regular',)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

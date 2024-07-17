@@ -104,6 +104,9 @@ class _CameraScreenState extends State<CameraScreen> {
       // 사진 업로드가 성공했을 때 /updateDailyWaste 요청 보내기
       await _updateDailyWaste(userId!);
 
+      // 사진 업로드가 성공했을 때 /updateUserCoins 요청 보내기
+      await _updateUserCoins(widget.token, 5);
+
     } else {
       setState(() {
         responseBody = 'Failed to upload file';
@@ -127,6 +130,21 @@ class _CameraScreenState extends State<CameraScreen> {
     }
   }
 
+  Future<void> _updateUserCoins(String token, int coins) async {
+    final uri = Uri.parse('http://172.10.7.88:80/updateUserCoins');
+    final response = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'token_id': token, 'coins': coins}),
+    );
+
+    if (response.statusCode == 200) {
+      print('코인 업데이트 성공');
+    } else {
+      print('코인 업데이트 실패');
+    }
+  }
+
   @override
   void dispose() {
     controller?.dispose();
@@ -140,9 +158,6 @@ class _CameraScreenState extends State<CameraScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Camera Stream'),
-      ),
       body: Stack(
         children: [
           Positioned.fill(

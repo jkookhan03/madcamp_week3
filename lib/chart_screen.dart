@@ -80,11 +80,12 @@ class _TimeSeriesChartState extends State<TimeSeriesChart> {
         Map<String, int> dailyWasteMap = {};
 
         DateTime now = DateTime.now();
-        DateTime startDate = now.subtract(Duration(days: 30));
+        DateTime startDate = now.subtract(Duration(days: 25));
+        DateTime endDate = now.add(Duration(days: 5));
 
         for (var entry in data) {
           final date = DateTime.parse(entry['date']);
-          if (date.isAfter(startDate) && date.isBefore(now)) {
+          if (date.isAfter(startDate) && date.isBefore(endDate)) {
             dailyWasteMap[DateFormat('yyyy-MM-dd').format(date)] = entry['amount'];
           }
         }
@@ -136,7 +137,7 @@ class _TimeSeriesChartState extends State<TimeSeriesChart> {
             lineBarsData: [
               LineChartBarData(
                 spots: _spots,
-                isCurved: true,
+                isCurved: false, // 직선 그래프를 위해 isCurved를 false로 설정
                 colors: [Colors.blue],
                 dotData: FlDotData(show: false),
                 belowBarData: BarAreaData(show: false),
@@ -155,7 +156,7 @@ class _TimeSeriesChartState extends State<TimeSeriesChart> {
                 ),
                 margin: 10,
                 getTitles: (value) {
-                  DateTime date = DateTime.now().subtract(Duration(days: 30 - value.toInt()));
+                  DateTime date = DateTime.now().subtract(Duration(days: 25)).add(Duration(days: value.toInt()));
                   return DateFormat('MM/dd').format(date);
                 },
               ),

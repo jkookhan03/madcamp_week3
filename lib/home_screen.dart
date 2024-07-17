@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         style: TextStyle(fontSize: 24),
       ),
       UserScreen(token: widget.token, profileImageUrl: profileImageUrl, loginMethod: widget.login_method),
-      CameraScreen(),
+      CameraScreen(token: widget.token),  // token 전달
       ExchangeScreen(token: widget.token),
       TimeSeriesChart(token: widget.token),  // 차트 위젯에 token 전달
       GoogleMapScreen(),  // 구글 맵 위젯 추가

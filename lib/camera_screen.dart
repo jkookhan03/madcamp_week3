@@ -1,10 +1,15 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 
 class CameraScreen extends StatefulWidget {
+  final String token;
+
+  CameraScreen({required this.token});
+
   @override
   _CameraScreenState createState() => _CameraScreenState();
 }
@@ -16,11 +21,13 @@ class _CameraScreenState extends State<CameraScreen> {
   bool _isPressed = false;
   String? responseBody;
   bool isLoading = false;
+  String? userId;
 
   @override
   void initState() {
     super.initState();
     _initializeCamera();
+    _getUserId();
   }
 
   Future<void> _initializeCamera() async {
@@ -38,8 +45,27 @@ class _CameraScreenState extends State<CameraScreen> {
     setState(() {});
   }
 
+  Future<void> _getUserId() async {
+    final uri = Uri.parse('http://172.10.7.88:80/getUserId');
+    final response = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'token': widget.token}),
+    );
+
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+      setState(() {
+        userId = responseData['userId'].toString();
+      });
+      print('User ID: $userId');
+    } else {
+      print('Failed to get user ID');
+    }
+  }
+
   Future<void> _takePictureAndSend() async {
-    if (controller != null && controller!.value.isInitialized) {
+    if (controller != null && controller!.value.isInitialized && userId != null) {
       setState(() {
         _isPressed = true;
         isLoading = true;
@@ -74,11 +100,30 @@ class _CameraScreenState extends State<CameraScreen> {
       });
       print(responseBodyText); // Print the response body
       print('File uploaded successfully');
+
+      // 사진 업로드가 성공했을 때 /updateDailyWaste 요청 보내기
+      await _updateDailyWaste(userId!);
+
     } else {
       setState(() {
         responseBody = 'Failed to upload file';
       });
       print('Failed to upload file');
+    }
+  }
+
+  Future<void> _updateDailyWaste(String userId) async {
+    final uri = Uri.parse('http://172.10.7.88:80/updateDailyWaste');
+    final response = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'user_id': userId}),
+    );
+
+    if (response.statusCode == 200) {
+      print('Daily waste updated successfully');
+    } else {
+      print('Failed to update daily waste');
     }
   }
 
@@ -90,7 +135,7 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (controller == null || !controller!.value.isInitialized) {
+    if (controller == null || !controller!.value.isInitialized || userId == null) {
       return Center(child: CircularProgressIndicator());
     }
 

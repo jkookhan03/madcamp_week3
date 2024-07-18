@@ -16,7 +16,7 @@
 1. [정인호](https://www.notion.so/madcamp/f51fae3248a747fcb3100942d2a666f9?pvs=4)
 <br>
 
-    [![inho9899_github.png](profile/inho9899_github.png)](https://github.com/inho9899)
+    [![inho9899_github.png](inho9899_github.png)](https://github.com/inho9899)
 
 
 <br>
@@ -25,7 +25,7 @@
 2. [한종국](https://www.notion.so/madcamp/2eb9c9155ca34971bde955093a1eb8b2?pvs=4)
 <br>
 
-    [![Dayeong331_github.png](profile/jkookhan03_github.png)](https://github.com/jkookhan03)
+    [![jkookhan03_github.png](jkookhan03_github.png)](https://github.com/jkookhan03)
 
 
 <br>
